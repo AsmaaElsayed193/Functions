@@ -1,11 +1,12 @@
 package pk_Functions
-/*Created By " Asmaa Elsayed Ibrahim
+/* Created By ‘Asmaa Elsayed Ibrahim’
  * Date 25/12/2018
- * Function :'getting all objects in excel sheet and return them in  list  '
- * Input :  This Function takes only two inputs 
- * 1- file name    2- sheet name 
- * Output : output is list of object 
+ * Usage: Getting all objects (name, attributes and values) existing in excel sheet and return them in list
+ * Input: This Function takes only two inputs 
+ *  1- File name    2- Sheet name 
+ * Output: Output is list of object 
  */
+
 import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
 import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
 import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
@@ -41,14 +42,11 @@ import com.kms.katalon.core.testdata.ExcelData
 
 public class CS_AllPageObject {
 
-
+	//Getting all objects (name, attributes and values) existing in excel sheet and return them in list
 	@Keyword
 	List<TestObject> AllPageObjectFun (String fileName , String sheetName  ){
-		'getting all objects in excel sheet and return them in  list  '
-
 
 		List<TestObject> list = new ArrayList<TestObject>()
-
 
 		int row
 
@@ -56,16 +54,11 @@ public class CS_AllPageObject {
 		ExcelData  data = findTestData(fileName)
 		data.changeSheet(sheetName)
 
-
-
 		//  loop to get all object in excel sheet by using numbers of row
-
 		for (row = 1; row < data.getRowNumbers()+1; row++) {
 
 			//create new object and change it's property (Attribute , Value of it's attribute )
-
 			TestObject flexibleTestObject = new TestObject()
-
 			flexibleTestObject.addProperty(data.getValue(2, row), ConditionType.EQUALS, data.getValue(3, row))
 
 			//add above object into list

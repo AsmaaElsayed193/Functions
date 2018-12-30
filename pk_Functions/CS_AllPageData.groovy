@@ -1,10 +1,11 @@
 package pk_Functions
-/*Created By " Asmaa Elsayaed Ibrahim
+/* Created By " Asmaa Elsayed Ibrahim
  * Date 25/12/2018
- * Function :'setting data of excel sheet  into all objects in page '
- * Input :  This Function takes only three inputs 
- *  1- file name  2- sheet name  3- data as variable 
- * Output : there isn't output 
+ * Usage: Setting data existing in excel sheet of data in order of columns into all objects existing
+ *        in certain excel sheet and certain sheet name that stored in list by calling AllPageObjectFun function 
+ * Input: This Function takes only three inputs 
+ *  1- File name  2- Sheet name  3- Data as variable using binding  
+ * Output : There isn't output 
  */
 
 import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
@@ -48,21 +49,23 @@ import login_object.loginObject.*
 import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import com.kms.katalon.core.testdata.ExcelData
 
-
-
 public class CS_AllPageData {
 
+	// Setting data existing in excel sheet of data into all objects existing in certain excel sheet
+	//   and certain sheet name that stored in list by calling  AllPageObjectFun function
 	@Keyword
 	AllPageDataFun (  String fileName , String sheetName , List<TestObject> fieldsData ){
 
-		'setting data of excel sheet  into all objects in page '
-		List<TestObject> listObject = new ArrayList<TestObject>((new pk_object.CS_Object()).ObjectFun(fileName , sheetName ))
-
-		// loop for setting data to filled object
+		//getting all objects that stored in list by calling AllPageObjectFun function
+		List<TestObject> listObject = new ArrayList<TestObject>((new pk_Functions.CS_AllPageObject()).AllPageObjectFun (fileName , sheetName ))
 
 		int column
+
+		//loop for setting data into list object that stored in list using AllPageObjectFun function
 		for (column = 1; column <= listObject.size(); column++) {
+
 			WebUI.setText(listObject[(column - 1)], fieldsData[(column-1)])
+
 		}
 	}
 }

@@ -1,12 +1,10 @@
 package pk_Functions
-/*Created By " Asmaa Elsayed Ibrahim
+/* Created By " Asmaa Elsayed Ibrahim
  * Date 25/12/2018
- * Function :	' setting data into object selected by name of field '
+ * Usage: Setting data existing in excel sheet of data into selected certain objects existing in certain excel sheet
+ *        and certain sheet name that stored in list by calling ObjectFun  function
  * Input :  This Function takes four inputs 
- * First one for fields names 
- * Second one  file name 
- * Third one sheet name 
- * Forth one data as variable
+ *  1- fields names 2- File name  3- Sheet name  4- Data as variable using binding 
  * Output : there isn't output 
  */
 import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
@@ -52,18 +50,21 @@ import com.kms.katalon.core.testdata.ExcelData
 
 public class CS_SpecificData {
 
+	// Setting data existing in excel sheet of data into selected certain objects existing in certain excel sheet
+	// and certain sheet name that stored in list by calling  ObjectFun  function
 	@Keyword
 	DataFun (  List<TestObject> fieldsNames, String fileName , String sheetName , List<TestObject> fieldsData ){
 
-		' setting data into object selected by name of field '
-		List<TestObject> listobject = new ArrayList<TestObject>((new pk_object.CS_Object()).ObjectFun(fileName ,sheetName , fieldsNames))
+		//getting certain objects that selected using Fields names inputs then stored in list by calling ObjectFun function
+		List<TestObject> listobject = new ArrayList<TestObject>((new pk_Functions.CS_SpecificObject()).ObjectFun(fileName ,sheetName , fieldsNames))
 
-		ExcelData  data = findTestData(fileName)
-		data.changeSheet( sheetName)
-		int  noOfColumns = data.getColumnNumbers()
-
+		//ExcelData  data = findTestData(fileName)
+		//data.changeSheet( sheetName)
+		//int  noOfColumns = data.getColumnNumbers()
 
 		int column
+
+		//loop for setting data into list object that stored in list using ObjectFun function
 		for (column = 1; column <= listobject.size(); column++) {
 			WebUI.setText(listobject[(column - 1)], fieldsData[(column-1)])
 		}
