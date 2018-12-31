@@ -1,8 +1,8 @@
 package pk_Functions
-/* Created By " Asmaa Elsayed Ibrahim
+/* Created By Asmaa Elsayed Ibrahim
  * Date 25/12/2018
- * Usage: Setting data existing in excel sheet of data in order of columns into all objects existing
- *        in certain excel sheet and certain sheet name that stored in list by calling AllPageObjectFun function 
+ * Usage: Setting data existing in data excel sheet into all objects exist in objects excel 
+ *        file/sheet with the same order that exists by calling AllPageObjectFun function 
  * Input: This Function takes only three inputs 
  *  1- File name  2- Sheet name  3- Data as variable using binding  
  * Output : There isn't output 
@@ -58,14 +58,11 @@ public class CS_AllPageData {
 
 		//getting all objects that stored in list by calling AllPageObjectFun function
 		List<TestObject> listObject = new ArrayList<TestObject>((new pk_Functions.CS_AllPageObject()).AllPageObjectFun (fileName , sheetName ))
-
 		int column
 
 		//loop for setting data into list object that stored in list using AllPageObjectFun function
 		for (column = 1; column <= listObject.size(); column++) {
-
 			WebUI.setText(listObject[(column - 1)], fieldsData[(column-1)])
-
 		}
 	}
 }

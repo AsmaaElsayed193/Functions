@@ -43,7 +43,6 @@ import com.kms.katalon.core.annotation.Keyword
 public class CS_ListUsingLiTag {
 
 	private static TestObject dropdown = null;
-
 	private static List<WebElement> allItems= null;
 	private static WebElement dropDownList;
 

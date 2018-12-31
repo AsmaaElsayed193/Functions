@@ -1,8 +1,8 @@
 package pk_Functions
-/* Created By " Asmaa Elsayed Ibrahim
+/* Created By Asmaa Elsayed Ibrahim
  * Date 25/12/2018
- * Usage: Setting data existing in excel sheet of data into selected certain objects existing in certain excel sheet
- *        and certain sheet name that stored in list by calling ObjectFun  function
+ * Usage: Setting data existing in data excel sheet into certain objects exist in objects excel file/sheet 
+ *        with the same order that exists by calling ObjectFun function
  * Input :  This Function takes four inputs 
  *  1- fields names 2- File name  3- Sheet name  4- Data as variable using binding 
  * Output : there isn't output 
@@ -57,11 +57,6 @@ public class CS_SpecificData {
 
 		//getting certain objects that selected using Fields names inputs then stored in list by calling ObjectFun function
 		List<TestObject> listobject = new ArrayList<TestObject>((new pk_Functions.CS_SpecificObject()).ObjectFun(fileName ,sheetName , fieldsNames))
-
-		//ExcelData  data = findTestData(fileName)
-		//data.changeSheet( sheetName)
-		//int  noOfColumns = data.getColumnNumbers()
-
 		int column
 
 		//loop for setting data into list object that stored in list using ObjectFun function

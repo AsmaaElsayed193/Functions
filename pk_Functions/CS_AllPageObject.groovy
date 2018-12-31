@@ -1,9 +1,8 @@
 package pk_Functions
-/* Created By ‘Asmaa Elsayed Ibrahim’
+/* Created By Asmaa Elsayed Ibrahim
  * Date 25/12/2018
  * Usage: Getting all objects (name, attributes and values) existing in excel sheet and return them in list
- * Input: This Function takes only two inputs 
- *  1- File name    2- Sheet name 
+ * Input: This Function takes only two inputs 1- File name    2- Sheet name 
  * Output: Output is list of object 
  */
 

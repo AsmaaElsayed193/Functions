@@ -1,9 +1,8 @@
 package pk_Functions
-/* Created By ‘Asmaa Elsayed Ibrahim’
+/* Created By Asmaa Elsayed Ibrahim
  * Date 25/12/2018
- * Usage: Getting only objects (name, attributes and values) selected by names existing in excel sheet and return them in list
- * Input: This Function takes only two inputs
- *  1- File name    2- Sheet name   3-Fields Names
+ * Usage: Getting certain objects (names, attributes and values) by names existing in excel sheet and return them in list
+ * Input: This Function takes only two inputs 1- File name    2- Sheet name   3-Fields Names
  * Output: Output is list of object
  */
 
@@ -45,38 +44,55 @@ public class CS_SpecificObject {
 	//Getting only objects (name, attributes and values) selected by names existing in excel sheet and return them in list
 	@Keyword
 	List<TestObject> ObjectFun (String fileName , String sheetName , List<TestObject> fieldsNames ){
-
 		List<TestObject> list = new ArrayList<TestObject>()
-
 		int row
 		int fieldNo
-
-		// take file name and sheet name to get object
+		int index
+		// Take file name and sheet name to get object
 		ExcelData  data = findTestData(fileName)
 		data.changeSheet( sheetName)
 
-		//Looping on Fields names
-		for (fieldNo  = 1; fieldNo  <= fieldsNames.size(); fieldNo ++) {
+		List<String> valueOfRow = new ArrayList<String>()
 
-			//looping on excel file of object
-			for ( row = 1;  row < data.getRowNumbers()+1;  row++) {
-
-				//Compare between each row in column "1" in excel sheet of object and value existing in fields names to get it's row in excel sheet of object
-				if (data.getValue(1, row)== fieldsNames[(fieldNo -1)]){
-
-					//create new object and change it's property (Attribute , Value of it's attribute )
-					TestObject flexibleTestObject = new TestObject()
-					flexibleTestObject.addProperty(data.getValue(2,  row), ConditionType.EQUALS, data.getValue(3,  row))
-
-					//add above object into list
-					list.add(flexibleTestObject)
-
-					// if found the value of fields names same as certain row in excel sheet of object then break loop
-					break
-				}
-			}
+		//Looping on excel file of object
+		for ( row = 1;  row < data.getRowNumbers()+1;  row++) {
+			valueOfRow.add(data.getValue(1, row))
 		}
-		// return list of selected object
+
+		for (fieldNo  = 1; fieldNo  <= fieldsNames.size(); fieldNo ++) {
+			index = valueOfRow.indexOf(fieldsNames[(fieldNo -1)]);
+
+			//Create new object and change it's property (Attribute , Value of it's attribute )
+			TestObject flexibleTestObject = new TestObject()
+			flexibleTestObject.addProperty(data.getValue(2,index+1), ConditionType.EQUALS, data.getValue(3, index+1))
+
+			//Add above object into list
+			list.add(flexibleTestObject)
+		}
+
+
+
+
+		/*
+		 //Looping on Fields names
+		 for (fieldNo  = 1; fieldNo  <= fieldsNames.size(); fieldNo ++) {
+		 //Looping on excel file of object
+		 for ( row = 1;  row < data.getRowNumbers()+1;  row++) {
+		 //Compare between each row in column "1" in excel sheet of object and value existing in fields names to get it's row in excel sheet of object
+		 if (data.getValue(1, row)== fieldsNames[(fieldNo -1)]){
+		 //Create new object and change it's property (Attribute , Value of it's attribute )
+		 TestObject flexibleTestObject = new TestObject()
+		 flexibleTestObject.addProperty(data.getValue(2,  row), ConditionType.EQUALS, data.getValue(3,  row))
+		 //Add above object into list
+		 list.add(flexibleTestObject)
+		 //If found the value of fields names same as certain row in excel sheet of object then break loop
+		 break
+		 }
+		 }
+		 }
+		 */
+
+		//Return list of selected object
 		return list
 	}
 }
