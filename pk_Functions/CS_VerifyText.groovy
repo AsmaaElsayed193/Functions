@@ -18,6 +18,7 @@ import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
 import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
 import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
+import java.sql.Connection
 import com.kms.katalon.core.annotation.Keyword
 import com.kms.katalon.core.checkpoint.Checkpoint
 import com.kms.katalon.core.cucumber.keyword.CucumberBuiltinKeywords as CucumberKW
@@ -28,19 +29,20 @@ import com.kms.katalon.core.testdata.TestData
 import com.kms.katalon.core.testobject.TestObject
 import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
-
 import internal.GlobalVariable
 
 public class CS_VerifyText {
 
 
 	@Keyword
-	VerifyTextFun ( String localHost , String port , String serverName , String username, String password , String Query , TestObject object ){
+	VerifyTextFun ( String localHost , String port , String serverName , String username, String password , String Query , TestObject object){
 
-		// call Dbase Function to connect DB and get string of query
+		// Call Data base Function to connect DB and get string of query
 		String text =(new pk_Functions.CS_DataBase()).DbaseFun( localHost ,  port ,  serverName ,  username,  password ,  Query)
+
+		//Print text that got by Query
 		println text
-		object = findTestObject(null)
+
 		WebUI.verifyElementText(object, text)
 	}
 }
