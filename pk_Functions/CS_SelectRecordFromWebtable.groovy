@@ -70,11 +70,11 @@ public class CS_SelectRecordFromWebtable {
 			// for (int j = 0; j < Cols.size(); j++) {
 			//Verifying the expected text in the each cell in specified column
 			if (Cols.get(expectedValueColumn).getText().equalsIgnoreCase(expectedValue)) {
-
+				
 				//2To locate anchor in the expected value matched row to perform action'
 				//Cols.get(4).findElement(By.tagName('a')).click()
 				WebUI.delay(4)
-
+			
 				//Doing action to the selected record by clicking on actions button in predefined column
 				Cols.get(actionButtonColumn).findElement(By.tagName('a')).click() ;
 				WebUI.delay(4)
